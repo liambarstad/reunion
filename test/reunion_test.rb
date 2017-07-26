@@ -82,6 +82,8 @@ class ReunionTest < Minitest::Test
     activity2.add_participant("Jim", 10)
     reunion.add_activity(activity2)
 
-    assert_equal "Jim: 35\nJoe: -10\nSally: -25", reunion.print_summary
+    message = reunion.print_summary
+
+    assert_equal "Jim: 35\nJoe: -10\nSally: -25\n", message
   end
 end

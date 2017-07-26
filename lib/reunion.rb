@@ -17,6 +17,7 @@ class Reunion
     @activities.each do |activity|
       total += activity.total_cost
     end
+    total
   end
 
   def breakout
@@ -24,9 +25,9 @@ class Reunion
     @activities.each do |activity|
       activity.owed.keys.each do |participant|
         if results.include?(participant)
-          results[participant] += activity.participants[participant]
+          results[participant] += activity.owed[participant]
         else
-          results.store(participant, activity.participants[participant])
+          results.store(participant, activity.owed[participant])
         end
       end
     end
@@ -35,8 +36,10 @@ class Reunion
 
   def print_summary
     owed = breakout
+    message = ""
     owed.keys.each do |participant|
-      puts "#{participant}: #{owed[participant]}"
+      message += p "#{participant}: #{owed[participant]}\n"
     end
+    message
   end
 end
