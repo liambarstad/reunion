@@ -12,4 +12,17 @@ class Activity
     @participants.store(name, dollars)
     @total_cost += dollars
   end
+
+  def split
+    @total_cost / @participants.keys.length
+  end
+
+  def owed
+    owed_results = {}
+    @participants.keys.each do |name|
+      owed = split - @participants[name]
+      owed_results.store(name, owed)
+    end
+    owed_results
+  end
 end
